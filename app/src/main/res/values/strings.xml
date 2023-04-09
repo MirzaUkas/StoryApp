@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">StoryApp</string>
+    <string name="don_t_have_account">Don\'t have an account yet?<font color="#C58BF2"> Register</font></string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="hey_there">Hey there,</string>
+    <string name="password_minimum_character">Password must be at least 8 characters</string>
+    <string name="create_account">Create an Account</string>
+    <string name="name">Name</string>
+    <string name="already_have_account">Already have an account?<font color="#C58BF2"> Login</font></string>
+    <string name="login_failed">Login Failed, Please Try Again..</string>
+    <string name="register_failed">Register Failed, Please Try Again..</string>
+    <string name="register_success">Register Success, Please Login..</string>
+    <string name="register">Register</string>
+    <string name="description">Description</string>
+    <string name="upload">Upload</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="please_choose_image">Please choose an image file first.</string>
+    <string name="add_story_success">Success add story!</string>
+    <string name="cant_get_permission">Did not get permissions.</string>
 </resources>

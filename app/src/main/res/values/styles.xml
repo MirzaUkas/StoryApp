@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Typography -->
+    <style name="light">
+        <item name="android:fontFamily">@font/poppins_light</item>
+        <item name="android:textColor">@color/black_400</item>
+    </style>
+
+    <style name="regular">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textColor">@color/black_400</item>
+    </style>
+
+    <style name="medium">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">@color/black_400</item>
+    </style>
+
+    <style name="bold">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textColor">@color/black_400</item>
+    </style>
+
+
+    <style name="Widget.ProgressButton.Primary" parent="">
+        <item name="android:textAppearance">@style/bold</item>
+        <item name="android:textColor">@drawable/text_button</item>
+        <item name="android:background">@drawable/bg_button</item>
+    </style>
+    <style name="Widget.ProgressBar" parent="@style/Theme.AppCompat">
+        <item name="colorAccent">@color/purple_200</item>
+    </style>
+</resources>

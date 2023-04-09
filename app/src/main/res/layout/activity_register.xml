@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.register.RegisterActivity">
+
+    <TextView
+        android:id="@+id/tv_hello"
+        style="@style/medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_40"
+        android:layout_marginTop="@dimen/spacing_40"
+        android:text="@string/hey_there"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size_16"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_create_account"
+        style="@style/bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_40"
+        android:layout_marginTop="@dimen/spacing_8"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/create_account"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size_20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hello" />
+
+    <com.mirz.storyapp.widget.EditText
+        android:id="@+id/ed_register_name"
+        style="@style/light"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_40"
+        android:drawableStart="@drawable/ic_account"
+        android:drawablePadding="@dimen/spacing_8"
+        android:hint="@string/name"
+        android:padding="15dp"
+        android:textColor="@color/gray_200"
+        android:textSize="@dimen/text_size_12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_create_account"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <com.mirz.storyapp.widget.EditText
+        android:id="@+id/ed_register_email"
+        style="@style/light"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_40"
+        android:drawableStart="@drawable/ic_message"
+        android:drawablePadding="@dimen/spacing_8"
+        android:hint="@string/email"
+        android:padding="15dp"
+        android:textColor="@color/gray_200"
+        android:textSize="@dimen/text_size_12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ed_register_name"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <com.mirz.storyapp.widget.EditText
+        android:id="@+id/ed_register_password"
+        style="@style/light"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_40"
+        android:drawableStart="@drawable/ic_lock"
+        android:drawableEnd="@drawable/ic_password"
+        android:drawablePadding="@dimen/spacing_8"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="15dp"
+        android:textColor="@color/gray_200"
+        android:textSize="@dimen/text_size_12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ed_register_email"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <com.mirz.storyapp.widget.ProgressButton
+        android:id="@+id/bt_register"
+        style="@style/Widget.ProgressButton.Primary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_40"
+        app:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_register_password"
+        app:text="@string/register" />
+
+    <TextView
+        android:id="@+id/tv_already_have_an_account"
+        style="@style/medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/already_have_account"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_register" />
+</androidx.constraintlayout.widget.ConstraintLayout>
