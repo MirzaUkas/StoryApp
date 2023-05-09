@@ -3,6 +3,7 @@ package com.mirz.storyapp.ui.add_story
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.maps.model.LatLng
 import com.mirz.storyapp.domain.contract.AddStoryUseCaseContract
 import com.mirz.storyapp.domain.usecase.AddStoryUseCase
 import kotlinx.coroutines.flow.*
@@ -12,8 +13,8 @@ class AddStoryViewModel(private val addStoryUseCase: AddStoryUseCaseContract) : 
     private val _addStoryState = MutableStateFlow(AddStoryViewState())
     val addStoryState = _addStoryState.asStateFlow()
 
-    fun addStory(file: File, description: String) {
-        addStoryUseCase(file, description).onEach { result ->
+    fun addStory(file: File, description: String, latLng: LatLng?) {
+        addStoryUseCase(file, description, latLng).onEach { result ->
             _addStoryState.update {
                 it.copy(resultAddStory = result)
             }

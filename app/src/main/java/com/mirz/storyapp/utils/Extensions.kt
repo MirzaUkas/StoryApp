@@ -2,10 +2,12 @@ package com.mirz.storyapp.utils
 
 import android.content.ContentResolver
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Environment
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -13,9 +15,13 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import java.io.*
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 
 private const val FILENAME_FORMAT = "dd-MMM-yyyy"
@@ -71,4 +77,9 @@ fun Uri.uriToFile(context: Context): File {
 fun createCustomTempFile(context: Context): File {
     val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
     return File.createTempFile(timeStamp, ".jpg", storageDir)
+}
+
+
+fun Array<String>.checkPermissionsGranted(context: Context) = this.all {
+    ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
 }

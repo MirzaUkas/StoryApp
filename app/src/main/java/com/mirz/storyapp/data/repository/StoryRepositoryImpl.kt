@@ -4,6 +4,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.google.android.gms.maps.model.LatLng
 import com.mirz.storyapp.data.paging.StoryRemoteMediator
 import com.mirz.storyapp.data.response.StoryResponse
 import com.mirz.storyapp.data.source.database.StoryDatabase
@@ -37,12 +38,16 @@ class StoryRepositoryImpl(
         )
     }.flowOn(Dispatchers.IO)
 
-    override fun addStory(file: File, description: String) = flow {
+    override fun addStory(file: File, description: String, latLng: LatLng?) = flow {
         val requestBody = MultipartBody.Part.createFormData(
             "photo", file.name, file.asRequestBody("image/jpeg".toMediaTypeOrNull())
         )
+        val desc = description.toRequestBody("text/plain".toMediaType())
+        val lat = latLng?.latitude?.toFloat()
+        val lng = latLng?.longitude?.toFloat()
+
         emit(
-            api.addStory(requestBody, description.toRequestBody("text/plain".toMediaType()))
+            api.addStory(requestBody, desc, lat, lng)
         )
     }.flowOn(Dispatchers.IO)
 
