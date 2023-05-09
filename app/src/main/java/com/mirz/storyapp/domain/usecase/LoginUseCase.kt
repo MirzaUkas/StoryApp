@@ -1,5 +1,6 @@
 package com.mirz.storyapp.domain.usecase
 
+import com.mirz.storyapp.domain.contract.LoginUseCaseContract
 import com.mirz.storyapp.domain.entity.UserEntity
 import com.mirz.storyapp.domain.interfaces.AuthRepository
 import com.mirz.storyapp.domain.interfaces.UserPreferenceRepository
@@ -11,10 +12,11 @@ import kotlinx.coroutines.flow.flow
 class LoginUseCase(
     private val userPreferenceRepository: UserPreferenceRepository,
     private val authRepository: AuthRepository,
-) {
-    operator fun invoke(email: String, password: String): Flow<ResultState<String>> = flow {
-        emit(ResultState.Loading())
-        authRepository.login(email, password).catch {
+) : LoginUseCaseContract {
+    override operator fun invoke(email: String, password: String): Flow<ResultState<String>> =
+        flow {
+            emit(ResultState.Loading())
+            authRepository.login(email, password).catch {
                 emit(ResultState.Error(it.message.toString()))
             }.collect { result ->
                 if (result.error) {

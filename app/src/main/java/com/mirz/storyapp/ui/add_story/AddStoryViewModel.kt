@@ -3,11 +3,12 @@ package com.mirz.storyapp.ui.add_story
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.mirz.storyapp.domain.contract.AddStoryUseCaseContract
 import com.mirz.storyapp.domain.usecase.AddStoryUseCase
 import kotlinx.coroutines.flow.*
 import java.io.File
 
-class AddStoryViewModel(private val addStoryUseCase: AddStoryUseCase) : ViewModel() {
+class AddStoryViewModel(private val addStoryUseCase: AddStoryUseCaseContract) : ViewModel() {
     private val _addStoryState = MutableStateFlow(AddStoryViewState())
     val addStoryState = _addStoryState.asStateFlow()
 

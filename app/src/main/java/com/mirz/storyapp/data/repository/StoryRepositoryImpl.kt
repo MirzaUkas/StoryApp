@@ -34,4 +34,9 @@ class StoryRepositoryImpl(private val api: ApiServices) : StoryRepository {
         )
     }.flowOn(Dispatchers.IO)
 
+    override fun getStoriesLocation(id: Int) = flow {
+        emit(
+            api.storiesLocation(id)
+        )
+    }.flowOn(Dispatchers.IO)
 }

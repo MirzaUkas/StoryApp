@@ -3,10 +3,12 @@ package com.mirz.storyapp.ui.detail_story
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.mirz.storyapp.domain.contract.GetStoryDetailUseCaseContract
 import com.mirz.storyapp.domain.usecase.GetStoryDetailUseCase
 import kotlinx.coroutines.flow.*
 
-class StoryDetailViewModel(private val getStoryDetailUseCase: GetStoryDetailUseCase) : ViewModel() {
+class StoryDetailViewModel(private val getStoryDetailUseCase: GetStoryDetailUseCaseContract) :
+    ViewModel() {
     private val _storyDetailViewState = MutableStateFlow(StoryDetailViewState())
     val storyDetailViewState
         get() = _storyDetailViewState.asStateFlow()

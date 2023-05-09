@@ -12,9 +12,9 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class StoryViewModel(
-    private val getStoriesUseCase: GetStoriesUseCase,
-    private val getUserUseCase: GetUserUseCase,
-    private val logoutUseCase: LogoutUseCase
+    private val getStoriesUseCase: GetStoriesUseCaseContract,
+    private val getUserUseCase: GetUserUseCaseContract,
+    private val logoutUseCase: LogoutUseCaseContract
 ) : ViewModel() {
     private val _storyState = MutableStateFlow(StoryViewState())
     val storyState = _storyState.asStateFlow()

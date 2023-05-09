@@ -5,12 +5,21 @@ import android.content.Context
 import androidx.datastore.preferences.preferencesDataStore
 import com.mirz.storyapp.data.repository.AuthRepositoryImpl
 import com.mirz.storyapp.data.repository.StoryRepositoryImpl
+import com.mirz.storyapp.data.source.database.StoryDatabase
 import com.mirz.storyapp.data.source.local.UserPreferenceImpl
 import com.mirz.storyapp.data.source.remote.RetrofitBuilder
-import com.mirz.storyapp.domain.usecase.*
+import com.mirz.storyapp.domain.usecase.AddStoryUseCase
+import com.mirz.storyapp.domain.usecase.GetStoriesLocationUseCase
+import com.mirz.storyapp.domain.usecase.GetStoriesUseCase
+import com.mirz.storyapp.domain.usecase.GetStoryDetailUseCase
+import com.mirz.storyapp.domain.usecase.GetUserUseCase
+import com.mirz.storyapp.domain.usecase.LoginUseCase
+import com.mirz.storyapp.domain.usecase.LogoutUseCase
+import com.mirz.storyapp.domain.usecase.RegisterUseCase
 import com.mirz.storyapp.ui.add_story.AddStoryViewModel
 import com.mirz.storyapp.ui.detail_story.StoryDetailViewModel
 import com.mirz.storyapp.ui.login.LoginViewModel
+import com.mirz.storyapp.ui.maps.MapsViewModel
 import com.mirz.storyapp.ui.register.RegisterViewModel
 import com.mirz.storyapp.ui.story.StoryViewModel
 import com.mirz.storyapp.ui.welcome.WelcomeViewModel
@@ -55,6 +64,10 @@ object Locator {
         get() = AddStoryViewModel.Factory(
             addStoryUseCase = addStoryUseCase
         )
+    val mapsViewModelFactory
+        get() = MapsViewModel.Factory(
+            getStoriesLocationUseCase = getStoriesLocationUseCase
+        )
 
     // UseCases Injection
     private val loginUseCase get() = LoginUseCase(userPreferencesRepository, authRepository)
@@ -64,6 +77,7 @@ object Locator {
     private val logoutUseCase get() = LogoutUseCase(userPreferencesRepository)
     private val getStoryDetailUseCase get() = GetStoryDetailUseCase(storyRepository)
     private val addStoryUseCase get() = AddStoryUseCase(storyRepository)
+    private val getStoriesLocationUseCase get() = GetStoriesLocationUseCase(storyRepository)
 
     // Repository Injection
     private val userPreferencesRepository by lazy {

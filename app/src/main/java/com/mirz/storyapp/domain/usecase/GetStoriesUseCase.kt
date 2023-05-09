@@ -1,11 +1,8 @@
 package com.mirz.storyapp.domain.usecase
 
-import com.mirz.storyapp.domain.entity.StoryEntity
+import com.mirz.storyapp.domain.contract.GetStoriesUseCaseContract
 import com.mirz.storyapp.domain.interfaces.StoryRepository
-import com.mirz.storyapp.utils.ResultState
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
+import com.mirz.storyapp.domain.mapper.map
 import kotlinx.coroutines.flow.map
 
 class GetStoriesUseCase(private val storyRepository: StoryRepository) {

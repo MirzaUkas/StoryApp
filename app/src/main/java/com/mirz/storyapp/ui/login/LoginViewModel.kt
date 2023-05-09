@@ -3,11 +3,12 @@ package com.mirz.storyapp.ui.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.mirz.storyapp.domain.contract.LoginUseCaseContract
 import com.mirz.storyapp.domain.usecase.LoginUseCase
 import kotlinx.coroutines.flow.*
 
 class LoginViewModel(
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCaseContract
 ) : ViewModel() {
     private val _loginState = MutableStateFlow(LoginViewState())
     val loginState = _loginState.asStateFlow()

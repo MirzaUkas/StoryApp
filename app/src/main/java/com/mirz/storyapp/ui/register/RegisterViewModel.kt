@@ -3,11 +3,12 @@ package com.mirz.storyapp.ui.register
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.mirz.storyapp.domain.contract.RegisterUseCaseContract
 import com.mirz.storyapp.domain.usecase.RegisterUseCase
 import kotlinx.coroutines.flow.*
 
 class RegisterViewModel(
-    private val registerUseCase: RegisterUseCase
+    private val registerUseCase: RegisterUseCaseContract
 ) : ViewModel() {
 
     private val _registerViewState = MutableStateFlow(RegisterViewState())

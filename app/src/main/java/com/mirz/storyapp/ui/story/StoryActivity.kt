@@ -3,15 +3,16 @@ package com.mirz.storyapp.ui.story
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mirz.storyapp.Locator
 import com.mirz.storyapp.databinding.ActivityStoryBinding
+import com.mirz.storyapp.ui.adapter.LoadingStateAdapter
+import com.mirz.storyapp.ui.adapter.StoryAdapter
 import com.mirz.storyapp.ui.add_story.AddStoryActivity
 import com.mirz.storyapp.ui.login.LoginActivity
-import com.mirz.storyapp.utils.ResultState
+import com.mirz.storyapp.ui.maps.MapsActivity
 import com.mirz.storyapp.utils.launchAndCollectIn
 
 class StoryActivity : AppCompatActivity() {
@@ -24,22 +25,7 @@ class StoryActivity : AppCompatActivity() {
         setContentView(binding.root)
         initAdapter()
         viewModel.storyState.launchAndCollectIn(this) {
-            when (it.resultStories) {
-                is ResultState.Success -> {
-                    binding.progressBar.visibility = android.view.View.GONE
-                    it.resultStories.data?.let { stories -> adapter.setItems(stories) }
-                }
-                is ResultState.Error -> {
-                    binding.progressBar.visibility = android.view.View.GONE
-                    Toast.makeText(this@StoryActivity, it.resultStories.message, Toast.LENGTH_SHORT)
-                        .show()
-                }
-                is ResultState.Loading ->
-                    binding.progressBar.visibility = android.view.View.VISIBLE
-
-                else -> Unit
-            }
-
+            adapter.submitData(lifecycle, it.resultStories)
             binding.tvName.text = it.username
         }
 
@@ -54,6 +40,9 @@ class StoryActivity : AppCompatActivity() {
 
         binding.actionChangeLanguage.setOnClickListener {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
+        binding.actionMaps.setOnClickListener {
+            startActivity(Intent(this@StoryActivity, MapsActivity::class.java))
         }
 
     }

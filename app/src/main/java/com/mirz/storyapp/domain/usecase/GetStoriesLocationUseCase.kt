@@ -1,6 +1,6 @@
 package com.mirz.storyapp.domain.usecase
 
-import com.mirz.storyapp.domain.contract.GetStoryDetailUseCaseContract
+import com.mirz.storyapp.domain.contract.GetStoriesLocationUseCaseContract
 import com.mirz.storyapp.domain.entity.StoryEntity
 import com.mirz.storyapp.domain.interfaces.StoryRepository
 import com.mirz.storyapp.domain.mapper.map
@@ -10,16 +10,18 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
-class GetStoryDetailUseCase(private val storyRepository: StoryRepository) :
-    GetStoryDetailUseCaseContract {
-    override operator fun invoke(id: String): Flow<ResultState<StoryEntity>> = flow {
+class GetStoriesLocationUseCase(private val storyRepository: StoryRepository) :
+    GetStoriesLocationUseCaseContract {
+
+    override operator fun invoke(): Flow<ResultState<List<StoryEntity>>> = flow {
         emit(ResultState.Loading())
-        storyRepository.getStory(id).map {
-            it.story.map()
+        storyRepository.getStoriesLocation(1).map {
+            it.listStory.map()
         }.catch {
             emit(ResultState.Error(message = it.message.toString()))
         }.collect {
             emit(ResultState.Success(it))
         }
     }
+
 }
