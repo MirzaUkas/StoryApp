@@ -22,4 +22,7 @@
     <string name="please_choose_image">Silakan pilih file gambar terlebih dahulu.</string>
     <string name="add_story_success">Sukses tambah cerita!</string>
     <string name="cant_get_permission">Tidak mendapatkan permission.</string>
+    <string name="retry">Coba Lagi</string>
+    <string name="content_desc_detail_story_photo">Gambar Detail Story</string>
+
 </resources>

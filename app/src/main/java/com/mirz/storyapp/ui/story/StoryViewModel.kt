@@ -3,6 +3,10 @@ package com.mirz.storyapp.ui.story
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
+import com.mirz.storyapp.domain.contract.GetStoriesUseCaseContract
+import com.mirz.storyapp.domain.contract.GetUserUseCaseContract
+import com.mirz.storyapp.domain.contract.LogoutUseCaseContract
 import com.mirz.storyapp.domain.usecase.GetStoriesUseCase
 import com.mirz.storyapp.domain.usecase.GetUserUseCase
 import com.mirz.storyapp.domain.usecase.LogoutUseCase
@@ -21,7 +25,7 @@ class StoryViewModel(
 
     fun getStories() {
         viewModelScope.launch {
-            getStoriesUseCase().collect { stories ->
+            getStoriesUseCase().cachedIn(viewModelScope).collect { stories ->
                 _storyState.update {
                     it.copy(resultStories = stories)
                 }

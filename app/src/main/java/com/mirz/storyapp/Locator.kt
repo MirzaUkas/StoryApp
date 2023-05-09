@@ -87,6 +87,9 @@ object Locator {
         AuthRepositoryImpl(RetrofitBuilder(requireApplication.dataStore).apiService)
     }
     private val storyRepository by lazy {
-        StoryRepositoryImpl(RetrofitBuilder(requireApplication.dataStore).apiService)
+        StoryRepositoryImpl(
+            StoryDatabase.getDatabase(requireApplication),
+            RetrofitBuilder(requireApplication.dataStore).apiService
+        )
     }
 }

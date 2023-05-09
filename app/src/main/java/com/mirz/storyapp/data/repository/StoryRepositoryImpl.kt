@@ -1,8 +1,16 @@
 package com.mirz.storyapp.data.repository
 
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.mirz.storyapp.data.paging.StoryRemoteMediator
+import com.mirz.storyapp.data.response.StoryResponse
+import com.mirz.storyapp.data.source.database.StoryDatabase
 import com.mirz.storyapp.data.source.remote.ApiServices
 import com.mirz.storyapp.domain.interfaces.StoryRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import okhttp3.MediaType.Companion.toMediaType
@@ -12,12 +20,16 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
-class StoryRepositoryImpl(private val api: ApiServices) : StoryRepository {
-    override fun getStories() = flow {
-        emit(
-            api.stories()
-        )
-    }.flowOn(Dispatchers.IO)
+class StoryRepositoryImpl(
+    private val storyDatabase: StoryDatabase, private val api: ApiServices
+) : StoryRepository {
+    override fun getStories(): Flow<PagingData<StoryResponse>> {
+        @OptIn(ExperimentalPagingApi::class) return Pager(config = PagingConfig(
+            pageSize = 5
+        ), remoteMediator = StoryRemoteMediator(storyDatabase, api), pagingSourceFactory = {
+            storyDatabase.storyDao().getAllStories()
+        }).flow
+    }
 
     override fun getStory(id: String) = flow {
         emit(

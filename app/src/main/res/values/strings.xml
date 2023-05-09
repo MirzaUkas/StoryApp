@@ -21,4 +21,6 @@
     <string name="please_choose_image">Please choose an image file first.</string>
     <string name="add_story_success">Success add story!</string>
     <string name="cant_get_permission">Did not get permissions.</string>
+    <string name="retry">Try Again</string>
+    <string name="content_desc_detail_story_photo">Detail Story Photo</string>
 </resources>

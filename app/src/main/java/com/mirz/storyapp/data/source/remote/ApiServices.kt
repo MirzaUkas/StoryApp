@@ -20,7 +20,10 @@ interface ApiServices {
     ): LoginResponse
 
     @GET("stories")
-    suspend fun stories(): StoryListResponse
+    suspend fun stories(
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): StoryListResponse
 
     @GET("stories/{id}")
     suspend fun storyDetail(

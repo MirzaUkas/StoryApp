@@ -54,7 +54,9 @@ class StoryActivity : AppCompatActivity() {
     }
 
     private fun initAdapter() {
-        binding.rvStory.adapter = adapter
+        binding.rvStory.adapter = adapter.withLoadStateFooter(footer = LoadingStateAdapter {
+            adapter.retry()
+        })
         binding.rvStory.layoutManager = LinearLayoutManager(this)
     }
 }
