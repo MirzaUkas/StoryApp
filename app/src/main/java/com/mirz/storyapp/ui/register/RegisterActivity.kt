@@ -35,6 +35,7 @@ class RegisterActivity : AppCompatActivity() {
                     )
                     finish()
                 }
+
                 is ResultState.Loading -> binding.btRegister.setLoading(true)
                 is ResultState.Error -> {
                     binding.btRegister.setLoading(false)
@@ -42,15 +43,20 @@ class RegisterActivity : AppCompatActivity() {
                         this@RegisterActivity, it.resultRegisterUser.message, Toast.LENGTH_SHORT
                     ).show()
                 }
+
                 else -> Unit
             }
         }
         binding.btRegister.setOnClickListener {
-            viewModel.registerUser(
-                name = binding.edRegisterName.text.toString(),
-                email = binding.edRegisterEmail.text.toString(),
-                password = binding.edRegisterPassword.text.toString()
-            )
+            if (binding.edRegisterName.error != null && binding.edRegisterEmail.error != null && binding.edRegisterPassword.error != null) {
+                viewModel.registerUser(
+                    name = binding.edRegisterName.text.toString(),
+                    email = binding.edRegisterEmail.text.toString(),
+                    password = binding.edRegisterPassword.text.toString()
+                )
+            } else {
+                Toast.makeText(this, getString(R.string.input_invalid), Toast.LENGTH_SHORT).show()
+            }
         }
         binding.tvAlreadyHaveAnAccount.setOnClickListener {
             startActivity(

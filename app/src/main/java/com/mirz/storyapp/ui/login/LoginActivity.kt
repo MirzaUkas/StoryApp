@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.mirz.storyapp.Locator
+import com.mirz.storyapp.R
 import com.mirz.storyapp.databinding.ActivityLoginBinding
 import com.mirz.storyapp.ui.register.RegisterActivity
 import com.mirz.storyapp.ui.story.StoryActivity
@@ -30,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
                     )
                     finish()
                 }
+
                 is ResultState.Loading -> binding.btLogin.setLoading(true)
                 is ResultState.Error -> {
                     binding.btLogin.setLoading(false)
@@ -37,16 +39,21 @@ class LoginActivity : AppCompatActivity() {
                         this@LoginActivity, state.resultVerifyUser.message, Toast.LENGTH_SHORT
                     ).show()
                 }
+
                 else -> Unit
             }
 
         }
 
         binding.btLogin.setOnClickListener {
-            viewModel.doLogin(
-                email = binding.edLoginEmail.text.toString(),
-                password = binding.edLoginPassword.text.toString()
-            )
+            if (binding.edLoginEmail.error != null && binding.edLoginPassword.error != null) {
+                viewModel.doLogin(
+                    email = binding.edLoginEmail.text.toString(),
+                    password = binding.edLoginPassword.text.toString()
+                )
+            } else {
+                Toast.makeText(this, getString(R.string.input_invalid), Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.tvDonTHaveAnAccount.setOnClickListener {

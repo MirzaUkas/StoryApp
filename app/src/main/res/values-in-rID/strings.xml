@@ -27,4 +27,5 @@
     <string name="content_desc_detail_story_photo">Gambar Detail Story</string>
     <string name="location_not_found">Lokasi tidak ditemukan. Coba lagi</string>
     <string name="enable_location">Aktifkan Lokasi</string>
+    <string name="input_invalid">Input Invalid!</string>
 </resources>

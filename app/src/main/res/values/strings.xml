@@ -26,4 +26,5 @@
     <string name="content_desc_detail_story_photo">Detail Story Photo</string>
     <string name="location_not_found">Location is not found. Try Again</string>
     <string name="enable_location">Enable Location</string>
+    <string name="input_invalid">Input Invalid</string>
 </resources>
