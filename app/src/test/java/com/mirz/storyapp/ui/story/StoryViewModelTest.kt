@@ -62,7 +62,9 @@ internal class StoryViewModelTest {
         //Then
         Assert.assertNotNull(differ.snapshot())
         Assert.assertEquals(dummyStory.size, differ.snapshot().size)
-        Assert.assertEquals(dummyStory[0].name, differ.snapshot()[0]?.name)
+        Assert.assertEquals(dummyStory.map().first(), differ.snapshot().first())
+        // Checking the type of both expected and actual data isn't possible in my code, because a mapping process in domain layer.
+        // Workaround I mapping it first to from StoryResponse into StoryEntity
 
     }
 
